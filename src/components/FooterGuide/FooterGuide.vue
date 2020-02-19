@@ -1,29 +1,34 @@
 <template>
 <div id="FooterGuide">
     <div :class="{active:$route.path === '/home'}" class="guideItem" @click="goPath('/home')">
-      <i class="iconfont icon-shouye2"></i>
+      <van-icon name="wap-home-o" size="20"/>
       <span>首页</span>
     </div>
     <div :class="{active:$route.path === '/classify'}"  class="guideItem" @click="goPath('/classify')">
-      <i class="iconfont icon-shouye2"></i>
+      <van-icon name="comment-o" size="20"/>
       <span>分类</span>
     </div>  
     <div :class="{active:$route.path === '/buying'}"  class="guideItem" @click="goPath('/buying')">
-      <i class="iconfont icon-shouye2"></i>
+      <van-icon name="gold-coin-o" size="20"/>
       <span>值得买</span>
     </div>  
     <div :class="{active:$route.path === '/trolley'}"  class="guideItem" @click="goPath('/trolley')">
-      <i class="iconfont icon-shouye2"></i>
+      <van-icon name="shopping-cart-o" size="20"/>
       <span>购物车</span>
     </div>  
     <div :class="{active:$route.path === '/personage'}"  class="guideItem" @click="goPath('/personage')">
-      <i class="iconfont icon-shouye2"></i>
+      <van-icon name="user-o" size="20"/>
       <span>个人</span>
     </div>    
 </div>
 </template>
 
 <script type="text/ecmascript-6">
+import Vue from 'vue';
+import { Icon } from 'vant';
+
+Vue.use(Icon);
+import 'vant/lib/icon/local.css';
 export default {
     methods:{
         goPath(path){
@@ -37,6 +42,7 @@ export default {
     #FooterGuide
         width 100%
         height 98 px
+        background-color #fff
         display flex
         position fixed
         left 0
@@ -45,11 +51,10 @@ export default {
         .guideItem
             flex 1
             display flex
+            padding-top 20px
             flex-direction column
             text-align center
             &.active
                 color #B4282D
-            i 
-                font-size 40px
-                margin-top 5px
+           
 </style>
