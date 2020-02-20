@@ -15,6 +15,8 @@ export default {
 </script>
 
 <style scoped lang="stylus" rel="styleshett/stylus">
-
+  #app 
+    width 750px
+    height 100%
 
 </style>

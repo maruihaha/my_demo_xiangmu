@@ -18,7 +18,7 @@
             
         </div>
     </div>
-    
+    <!-- 轮播图 -->
     <div class="lunbotu">
         <div class="swiper-container">
             <div class="swiper-wrapper" >
@@ -28,33 +28,22 @@
             </div>
         </div>
     </div>
+    <!-- 30天无忧退货图标 -->
     <div class="indexServicePolicy">
         <ul>
-            <li>
+            <li v-for="(indexItem,index) in policyDescList" :key="index">
                 <a href="">
-                    <i class="iconfont icon-shouye2"></i>
-                    <span>网易自营品牌</span>
+                    <img :src="indexItem.icon" alt="">
+                    <span>{{indexItem.desc}}</span>
                 </a>
-            </li>
-            <li>
-                <a href="">
-                    <i class="iconfont icon-shouye2"></i>
-                    <span>30天无忧退货</span>
-                </a>
-            </li>
-            <li>
-                <a href="">
-                    <i class="iconfont icon-shouye2"></i>
-                    <span>48小时快速退款</span>
-                </a>
-                
             </li>
         </ul>
     </div>
+    <!-- 新品首发商品列表 -->
     <div class="shopWill">
         <a href="" v-for="(xiaoData,index) in subCateList" :key='index'>
-            <img :src="xiaoData.wapBannerUrl" alt="">
-            <div class="shopWillSpan">{{xiaoData.name}}</div>
+            <img :src="xiaoData.picUrl" alt="">
+            <div class="shopWillSpan">{{xiaoData.text}}</div>
         </a>
     </div>
     <div class="shopBlue">
@@ -117,13 +106,15 @@
 import Swiper from 'swiper'
 import 'swiper/css/swiper.min.css'
 import indexData from '../data/indexCateModule.json'
+import indexInitial from '../data/index.json'
 import BScroll from 'better-scroll'
 export default {
     data(){
         return {
             arr:10,
             indexData:[],
-            subCateList:[]
+            subCateList:[],
+            policyDescList:[]
         }
     },
      mounted(){
@@ -131,7 +122,8 @@ export default {
            
 
             this.indexData = indexData
-            this.subCateList = this.indexData[0].subCateList.splice(0,10)
+            this.subCateList = indexInitial.kingKongModule.kingKongList
+            this.policyDescList = indexInitial.policyDescList
 
             new BScroll('.waimian',{
                 scrollX:true
@@ -244,7 +236,7 @@ export default {
                     flex 1 
                     line-height 75px   
                     a 
-                        i 
+                        img  
                             width 30px
                             height 30px  
         

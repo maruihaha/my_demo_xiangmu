@@ -1,5 +1,6 @@
 <template>
-<div>
+<div class="butContent">
+     <!-- 类目热销榜 -->
     <div class="hotCakes">
         <div class="wenzi">类目热销榜</div>
         <div class="tuhua">
@@ -48,16 +49,102 @@
                 </div>
             </div>
         </div>
+
+
+
+    </div>
+    <!--  限时购 -->
+    <div class="purchase">
+        <div class="purTop">
+            <span class="xianshigou">限时购</span>
+            <div class="purTime">
+                <span>00</span>
+                <span>:</span>
+                <span>00</span>
+                <span>:</span>
+                <span>00</span>
+            </div>
+            <span class="purright">更多</span>
+            <van-icon name="arrow" size="15"/>
+        </div>
+        <div class="purBut">
+            <div class="purBtnList" v-for="(item,index) in itemList " :key="index">
+                <img :src="item.picUrl" alt="">
+                <span class="current">￥{{item.activityPrice}}</span>
+                <span class="original">￥{{item.originPrice}}</span>
+            </div>
+        </div>
+    </div>
+    <!-- 新品首发 -->
+    <div class="purchase2">
+        <div class="purTop2">
+            <span class="xianshigou2">新品发售</span>
+            <span class="purright2">更多</span>
+            <van-icon name="arrow" size="15"/>
+        </div>
+        <div class="purBut2">
+            <div class="purBtnList2" v-for="(item1,index) in kingKongList " :key="index">
+                <img :src="item1.scenePicUrl" alt="">
+                <span v-if="item1.extra.resource">{{item1.extra.resource.materialName}}</span><br>
+                <span class="current2">￥{{item1.retailPrice}}</span><br>
+                <span class="specialOffe2">{{item1.itemTagList[1]?item1.itemTagList[1].name :item1.itemTagList[0].name}}</span>
+            </div>
+        </div>
+    </div>
+    <!-- 新品首发下面的图 -->
+    <div class="sceneLightShopping">
+        <div class="shoppingList" v-for="(item3,index) in sceneLightShopping" :key="index">
+            <div class="listTop">{{item3.styleItem.title}}</div>
+            <div class="listBtm">{{item3.styleItem.desc}}</div>
+            <img :src="item3.styleItem.picUrlList[0]" alt="">
+            <img :src="item3.styleItem.picUrlList[1]" alt="">
+        </div>
+    </div>
+    <!--最底部  -->
+    <div class="end" >
+        <div class="bd" >
+            <a href="##" class="" >下载APP</a>
+            <a href="##" >电脑版</a>
+        </div>
+        <p class="copyright" >
+            <span >网易公司版权所有 © 1997-</span>
+            <span >2020</span><br>
+            <span >食品经营许可证：JY13301080111719</span>
+        </p>
     </div>
 </div>
 </template>
 
 <script type="text/ecmascript-6">
+import Vue from 'vue';
+import { Icon } from 'vant';
+
+Vue.use(Icon);
+import 'vant/lib/icon/local.css';
+import itemList from '../../components/data/index.json'
 export default {
+    data(){
+        return{
+            itemList:[],
+            kingKongList:[],
+            sceneLightShopping:[]
+        }
+    },
+    mounted(){
+        this.itemList = itemList.flashSaleModule.itemList
+        this.kingKongList = itemList.newItemList.splice(0,6)
+        this.sceneLightShopping = itemList.sceneLightShoppingGuideModule
+
+        console.log(this.sceneLightShopping);
+        
+        
+    }
 }
 </script>
 
 <style scoped lang="stylus" rel="styleshett/stylus">
+.butContent
+    overflow hidden
     .hotCakes
         width 750px
         height 710px
@@ -127,6 +214,180 @@ export default {
                         height 120px
                         display block
                         margin 0 auto 
-                        
+
+    .purchase   
+        width 100%
+        height 700px
+        margin  10px 30px
+        .purTop
+            width 100%
+            height 100px
+            box-sizing border-box
+            .xianshigou 
+                font-size 28px
+                line-height 100px 
+                float left  
+            .purTime
+                width 181px
+                height 100px
+                margin-left 5px
+                font-size 28px
+                line-height 100px  
+                text-align center
+                float left
+                color #fff
+                span 
+                    background #000   
+                    width 36px
+                    font-size 28px
+                    height 36px     
+                    color #fff
+                    line-height 36px
+                    display inline    
+                    line-height 100px  
+                    text-align center
+            .van-icon
+                float left 
+                line-height 100px
+            .purright
+                float left 
+                line-height 100px
+                margin-left 300px
+            .purright2
+                float left 
+                line-height 100px
+                margin-left 450px
             
+        .purBut
+            width 750px
+            height 600px
+            display flex
+            flex-wrap: wrap
+
+            .purBtnList
+                width 216px
+                height 300px 
+                background #eee
+                margin 0 20px 10px 0
+                span 
+                    font-size 22px
+                img 
+                    width 216px
+                    height 216px 
+                .current
+                    color red
+                    font-size 26px
+                .original   
+                    text-decoration line-through 
+    .purchase2   
+        width 100%
+        height 900px
+        margin  10px 30px
+        .purTop2
+            width 100%
+            height 100px
+            box-sizing border-box
+            .xianshigou2 
+                font-size 28px
+                line-height 100px 
+                float left  
+            .purTime2
+                width 181px
+                height 100px
+                margin-left 5px
+                font-size 28px
+                line-height 100px  
+                text-align center
+                float left
+                color #fff
+                span 
+                    background #000   
+                    width 36px
+                    font-size 28px
+                    height 36px     
+                    color #fff
+                    line-height 36px
+                    display inline    
+                    line-height 100px  
+                    text-align center
+            .van-icon
+                float left 
+                line-height 100px
+            .purright2
+                float left 
+                line-height 100px
+                margin-left 300px
+
+        .purBut2
+            width 750px
+            height 600px
+            display flex
+            flex-wrap: wrap    
+            .purBtnList2
+                width 216px
+                height 398px 
+                background #eee
+                margin 0 20px 10px 0
+                span 
+                    font-size 22px
+                img 
+                    width 216px
+                    height 216px 
+                .current2
+                    color red
+                    font-size 26px
+                    line-height 30px
+                .original2   
+                    text-decoration line-through 
+                .specialOffe2
+                    border 2px solid  red
+                    border-radius 20px
+                    padding 0 7px
+                    
+    .sceneLightShopping
+        width 750px
+        height 580px
+        margin 10px 30px 30px 26px
+        display flex
+        flex-wrap: wrap
+        .shoppingList
+            padding  20px 0 0 20px
+            width 343px
+            height 264px
+            background #eee
+            margin 0 4px 0 0
+            box-sizing border-box
+            .listTop
+                height 48px
+                line-height 48px
+                font-size 30px
+            .listBtm
+                height 36px
+                line-height 36px
+                font-size 24px
+            img 
+                width 150px
+                height 150px
+    .end 
+        height 260px
+        width 750px
+        background #333
+        padding  54px 20px 28px 20px
+        .bd 
+            width 100%
+            height  62px
+            margin-bottom 36px
+            text-align center
+            line-height 62px
+            a 
+                border 1px solid #fff
+                border-radius 13px
+                color #fff
+                font-size 36px
+                padding 10px
+                margin-right 10px
+        p  
+            text-align center
+            color #fff
+
 </style>
