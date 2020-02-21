@@ -7,7 +7,7 @@
                 <img src='//yanxuan-static.nosdn.127.net/hxm/yanxuan-wap/p/20161201/style/img/icon-normal/indexLogo-a90bdaae6b.png?imageView&type=webp' alt="图标">
             </h1>
             <input type="text" name="" id="" placeholder="搜索商品">
-            <div class="btn">登录</div>
+            <van-button plain hairline type="primary" to="/login">登录</van-button>
         </div>
         <div class="navButoom">
             <div class="waimian" >
@@ -122,7 +122,7 @@ export default {
                     border-radius 13px
                     background-color: #ededed;
                     margin 0 10px
-                .btn
+                .van-button
                     padding 5px 10px
                     display inline
                     color #DD1A21;
@@ -166,7 +166,5 @@ export default {
                     img 
                         width 750px
                         height 370px
-
-        
 
 </style>

@@ -20,24 +20,51 @@
     </div>
     <!-- 过度色中的商品列表 -->
     <div class="productList">
-        
-        <div class="swiper-container">
-            <div class="swiper-wrapper" >
-                <div >
-                    <img src="" alt="">
-                </div>
-                <div >
-                    <img src="" alt="">
+        <div class="waibiaoContent">
+            <div class="limianContent" >
+                <div class="outsideBox" v-for="(fehelItem,index) in navList" :key="index">
+                    <div class="boxList">
+                        <img :src="fehelItem.picUrl" alt="">
+                        <p class="character1">{{fehelItem.mainTitle}}</p>
+                        <p class="character2">{{fehelItem.viceTitle}}</p>
+                    </div>
+                    <div class="boxList2">
+                        <img :src="fehelItem.picUrl" alt="">
+                        <p class="character3">{{fehelItem.mainTitle}}</p>
+                        <p class="character4">{{fehelItem.viceTitle}}</p>
+                    </div>
                 </div>
             </div>
         </div>
-    
+    </div>
+    <!-- 瀑布式商品列表 -->
+    <div class="waterfallList">
+
     </div>
 </div>
 </template>
 
 <script type="text/ecmascript-6">
+import Swiper from 'swiper'
+import 'swiper/css/swiper.min.css'
+import BScroll from 'better-scroll'
+import fehelper from '../../components/data/FeHelper-20200221212837.json'
 export default {
+    data() {
+        return {
+            navList:[]
+        }
+    },
+    mounted(){
+        this.navList = fehelper.data.navList
+    
+        new BScroll('.waibiaoContent',{
+                scrollX:true,
+            })  
+    },
+    watch:{
+        
+    }
 }
 </script>
 
@@ -86,8 +113,62 @@ export default {
         .productList
             width 710px
             height 540px
-            background #000
+            background #fff
             box-sizing border-box
             margin 0 20px
-
+            .waibiaoContent
+                width 100%
+                height 100%
+                overflow hidden
+                .limianContent
+                    height 100%
+                    width 1344px
+                    display flex
+                    flex-wrap nowrap
+                    .outsideBox
+                        width 180px
+                        height 470px
+                        margin 36px 6px 6px 6px
+                        box-sizing border-box
+                        .boxList
+                            width 168px
+                            height 200px
+                            text-align center
+                            img 
+                                width 120px
+                                height 120px
+                            .character1
+                                font-size 28px
+                                height 40px
+                                line-height 28px
+                                text-align center
+                            .character2
+                                font-size 24px
+                                height 30px
+                                line-height 24px
+                                text-align center
+                        .boxList2
+                            width 168px
+                            height 200px
+                            margin-top 28px
+                            text-align center
+                            img 
+                                width 120px
+                                height 120px
+                            .character3
+                                font-size 28px
+                                height 40px
+                                line-height 28px
+                                text-align center
+                            .character4
+                                font-size 24px
+                                height 30px
+                                line-height 24px
+                                text-align center
+        .waterfallList
+            width 710px
+            height 1000px
+            box-sizing border-box
+            margin 30px 20px 0
+            background yellow 
 </style>
