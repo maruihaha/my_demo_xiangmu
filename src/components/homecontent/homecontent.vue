@@ -135,7 +135,7 @@ export default {
         this.kingKongList = itemList.newItemList.splice(0,6)
         this.sceneLightShopping = itemList.sceneLightShoppingGuideModule
 
-        console.log(this.sceneLightShopping);
+        // console.log(this.sceneLightShopping);
         
         
     }

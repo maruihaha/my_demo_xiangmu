@@ -3,29 +3,60 @@ import Classify from '../pages/Classify/Classify'
 import Home from '../pages/Home/Home'
 import Personage from '../pages/Personage/Personage'
 import Trolley from '../pages/Trolley/Trolley'
+import Moduledata from '../pages/Moduledata/Moduledata'
+import Login from '../pages/Login/Login'
 
 
 export default [
     {
         path:'/home',// 首页
-        component:Home
+        component:Home,
+        meta:{
+            isLogin:true
+        }
     },
     {
         path:'/classify',//分类
-        component:Classify
+        component:Classify,
+        meta:{
+            isLogin:true
+        }
     },
     {
         path:'/buying',//值得买
-        component:Buying
+        component:Buying,
+        meta:{
+            isLogin:true
+        }
     },
     {
         path:'/trolley',//购物车
-        component:Trolley
+        component:Trolley,
+        meta:{
+            isLogin:true
+        }
     },
     {
         path:'/personage',//个人
-        component:Personage
+        component:Personage,
+        meta:{
+            isLogin:true
+        }
     },
+    {
+        path: '/moduledata',
+        component: Moduledata,
+        meta:{
+            isLogin:true
+        }
+      },
+      {
+        path: '/login',
+        component: Login,
+        meta:{
+            isLogin:false
+        }
+      },
     {
         path:'/',
         redirect:'home'
