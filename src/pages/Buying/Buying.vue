@@ -38,9 +38,27 @@
         </div>
     </div>
     <!-- 瀑布式商品列表 -->
-    <div class="waterfallList">
 
+    <div class="container">
+        <div class="ad">
+                <img src="https://yanxuan.nosdn.127.net/87f3077c32a6946ae644f6a6a8205fc1.png" alt="">
+        </div>
+        <div class="box" v-for="(item, index) in listdata" :key="index">
+                <img :src="item.picUrl" alt="">
+                <h2>{{item.title}}</h2>
+                <div class="introduction">
+                    <div>
+                        <img :src="item.avatar" alt="">
+                        <span>{{item.nickname}}</span>
+                    </div>
+                    <div>
+                        <van-icon name="eye-o" size="20"/>
+                        <span>{{item.readCount}}</span>
+                    </div>
+                </div>
+        </div>
     </div>
+
 </div>
 </template>
 
@@ -49,22 +67,27 @@ import Swiper from 'swiper'
 import 'swiper/css/swiper.min.css'
 import BScroll from 'better-scroll'
 import fehelper from '../../components/data/FeHelper-20200221212837.json'
+import waterfall from '../../components/data/waterfall.json'
+import cateModu from '../../components/data/indexCateModule.json'
+import axios from 'axios'
 export default {
     data() {
         return {
-            navList:[]
+            navList:[],
+            listdata:[],
+            dataList:[]
         }
     },
     mounted(){
         this.navList = fehelper.data.navList
-    
+        this.listdata = waterfall.data[0].topics
+        // this.dataList = waterfall.data[0]
         new BScroll('.waibiaoContent',{
                 scrollX:true,
-            })  
+            })       
     },
-    watch:{
-        
-    }
+   
+     
 }
 </script>
 
@@ -165,10 +188,49 @@ export default {
                                 height 30px
                                 line-height 24px
                                 text-align center
-        .waterfallList
+       
+            
+        .container
             width 710px
-            height 1000px
+            margin 20px auto 
             box-sizing border-box
-            margin 30px 20px 0
-            background yellow 
+            background #eeeeee
+            padding 0 20px
+            columns 2
+            column-gap 20spx
+            .ad 
+                width 100%
+                margin-bottom 10px
+                img 
+                    max-width 100%
+                    border-radius 16px
+            .box
+                width 100%
+                margin 0 0 20px
+                background #ffffff
+                overflow hidden
+                break-inside avoid
+                img
+                    max-width 100%
+                    border-radius 16px
+                h2 
+                    margin-top 20px
+                    font-size 30px
+                    line-height 40px
+                .introduction
+                    width 100%
+                    height 80px
+                    margin-top 20px
+                    display flex
+                    justify-content space-between
+                    img 
+                        width 48px
+                        height 48px
+                        border-radius 50%
+                        vertical-align middle
+                    .van-icon
+                        vertical-align middle
+                       
+                
+
 </style>
