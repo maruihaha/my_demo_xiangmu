@@ -68,8 +68,6 @@ import 'swiper/css/swiper.min.css'
 import BScroll from 'better-scroll'
 import fehelper from '../../components/data/FeHelper-20200221212837.json'
 import waterfall from '../../components/data/waterfall.json'
-import cateModu from '../../components/data/indexCateModule.json'
-import axios from 'axios'
 export default {
     data() {
         return {

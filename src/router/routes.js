@@ -5,6 +5,7 @@ import Personage from '../pages/Personage/Personage'
 import Trolley from '../pages/Trolley/Trolley'
 import Moduledata from '../pages/Moduledata/Moduledata'
 import Login from '../pages/Login/Login'
+import Classifyright from '../components/classifyRight/classifyRight'
 
 
 export default [
@@ -20,7 +21,16 @@ export default [
         component:Classify,
         meta:{
             isLogin:true
-        }
+        },
+        children:[
+            {
+                path:'/classify/classifyright/:id',
+                component:Classifyright,
+                meta:{
+                    isLogin:true
+                },
+            },
+        ]
     },
     {
         path:'/buying',//值得买
@@ -59,6 +69,6 @@ export default [
       },
     {
         path:'/',
-        redirect:'home'
+        redirect:'/home'
     }
 ]

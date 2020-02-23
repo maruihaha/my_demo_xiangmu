@@ -33,7 +33,6 @@
 
 <script type="text/ecmascript-6">
 import NavigationCarousel from '../../components/NavigationCarousel/NavigationCarousel'
-import indexCate from '../../components/data/indexCateModule.json'
 import { mapState } from 'vuex'
 export default {
     components:{
@@ -46,7 +45,8 @@ export default {
             initData:0
         }
     },
-    mounted(){
+    async mounted(){
+        let indexCate = await this.$API.getCateNavList()
         this.subCateList =  indexCate[0].subCateList
         this.initData = this.tadas
     },
@@ -56,8 +56,9 @@ export default {
         })
     },
     watch:{
-      tadas(){
+      async tadas(){
           this.initData = this.tadas
+           let indexCate = await this.$API.getCateNavList()
           this.subCateList =  indexCate[this.initData].subCateList
       }
     }

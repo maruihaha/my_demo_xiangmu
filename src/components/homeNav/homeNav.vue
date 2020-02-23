@@ -1,35 +1,6 @@
 <template>
 <div id="homeNav">
-    <!-- <div class="topflex">
-        <div class="navTop">
-            <h1>
-                <img src='//yanxuan-static.nosdn.127.net/hxm/yanxuan-wap/p/20161201/style/img/icon-normal/indexLogo-a90bdaae6b.png?imageView&type=webp' alt="图标">
-            </h1>
-            <input type="text" name="" id="" placeholder="搜索商品">
-            <div class="btn">登录</div>
-        </div>
-        <div class="navButoom">
-            <div class="waimian" >
-                <ul class="limian" >
-                     
-                    <li @click="clickOn(index)" :class="{active:!(typeof(deindex) === 'number')}">推荐</li>
-                    <li @click="clickOn(index)" :class="{active:index === deindex}" v-for="(nameto,index) in indexData" :key="index">{{nameto.name}}</li>
-                </ul> 
-            </div>
-            
-        </div>
-    </div> -->
-    <!-- 轮播图 -->
-    <!-- <div class="lunbotu">
-        <div class="swiper-container">
-            <div class="swiper-wrapper" >
-                <div class="swiper-slide" v-for="(item,index) in indexData" :key="index">
-                    <img :src="item.imgUrl" alt="">
-                </div>
-            </div>
-        </div>
-    </div> -->
-
+<!-- 头部，轮播图 -->
         <NavigationCarousel />
 
     <!-- 30天无忧退货图标 -->
@@ -111,8 +82,6 @@
 // import axios from 'axios'
 import Swiper from 'swiper'
 import 'swiper/css/swiper.min.css'
-import indexData from '../data/indexCateModule.json'
-import indexInitial from '../data/index.json'
 import BScroll from 'better-scroll'
 import NavigationCarousel from '../NavigationCarousel/NavigationCarousel'
 export default {
@@ -126,45 +95,21 @@ export default {
             policyDescList:[],
         }
     },
-     mounted(){
+     async mounted(){
         // axios
            
+            let reslut = await this.$API.getindexList()
+            // console.log(reslut)
+            // this.indexData = indexData
+            this.subCateList = reslut.kingKongModule.kingKongList
+            // console.log(this.subCateList);
+            
+            this.policyDescList = reslut.policyDescList
+            // console.log(this.policyDescList);
+            
 
-            this.indexData = indexData
-            this.subCateList = indexInitial.kingKongModule.kingKongList
-            this.policyDescList = indexInitial.policyDescList
-
-            // new BScroll('.waimian',{
-            //     scrollX:true,
-            //     click:true
-            // })
-            
-            
-            
     },
-    // watch:{
-    //     indexData(){
-    //         this.$nextTick(()=>{
-    //         new Swiper('.swiper-container', {
-    //             autoplay:true,
-    //             loop:true
-    //         })
-    //     })
-    //     }
-            
-        
-        
-    // },
-    // methods:{
-    //     clickOn(index ){
-    //         this.deindex = index
-    //         this.$router.replace('/moduledata')
-    //         // console.log(this.deindex);
-    //         if (this.deindex === undefined) {
-    //             this.$router.replace('/home')
-    //         }
-    //     }
-    // }
+
 
 }
 </script>

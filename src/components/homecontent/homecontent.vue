@@ -49,9 +49,6 @@
                 </div>
             </div>
         </div>
-
-
-
     </div>
     <!--  限时购 -->
     <div class="purchase">
@@ -118,10 +115,8 @@
 <script type="text/ecmascript-6">
 import Vue from 'vue';
 import { Icon } from 'vant';
-
 Vue.use(Icon);
 import 'vant/lib/icon/local.css';
-import itemList from '../../components/data/index.json'
 export default {
     data(){
         return{
@@ -130,10 +125,11 @@ export default {
             sceneLightShopping:[]
         }
     },
-    mounted(){
-        this.itemList = itemList.flashSaleModule.itemList
-        this.kingKongList = itemList.newItemList.splice(0,6)
-        this.sceneLightShopping = itemList.sceneLightShoppingGuideModule
+    async mounted(){
+        let reslut = await this.$API.getindexList()
+        this.itemList = reslut.flashSaleModule.itemList
+        this.kingKongList = reslut.newItemList.splice(0,6)
+        this.sceneLightShopping = reslut.sceneLightShoppingGuideModule
 
         // console.log(this.sceneLightShopping);
         
