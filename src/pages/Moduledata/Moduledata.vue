@@ -3,7 +3,7 @@
     <NavigationCarousel />
     
     <!-- 文字图画列表 -->
-    <div class="periphery" v-for="(subCate,index) in subCateList" :key="index">
+    <div class="periphery" v-for="(subCate,index) in subCateList.subCateList" :key="index">
         <div class="description">
             <span>{{subCate.name}}</span>
             <p>{{subCate.frontName}}</p>
@@ -33,7 +33,7 @@
 
 <script type="text/ecmascript-6">
 import NavigationCarousel from '../../components/NavigationCarousel/NavigationCarousel'
-import { mapState } from 'vuex'
+
 export default {
     components:{
         NavigationCarousel
@@ -42,24 +42,25 @@ export default {
         return {
             subCateList:[],
             falseArr:6,
-            initData:0
         }
     },
     async mounted(){
-        let indexCate = await this.$API.getCateNavList()
-        this.subCateList =  indexCate[0].subCateList
-        this.initData = this.tadas
+         let indexCate = await this.$API.getCateNavList()
+        // console.log(indexCate);
+        
+        this.subCateList = indexCate.find(item => this.$route.params.id*1 === item.id)
+        // console.log(this.subCateList);
+        
+        
     },
     computed:{
-        ...mapState({
-            tadas:state=>state.initData
-        })
+       
     },
     watch:{
-      async tadas(){
-          this.initData = this.tadas
+       async $route(){
            let indexCate = await this.$API.getCateNavList()
-          this.subCateList =  indexCate[this.initData].subCateList
+        this.subCateList = indexCate.find(item => this.$route.params.id*1 === item.id)
+
       }
     }
     

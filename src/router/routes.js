@@ -6,7 +6,8 @@ import Trolley from '../pages/Trolley/Trolley'
 import Moduledata from '../pages/Moduledata/Moduledata'
 import Login from '../pages/Login/Login'
 import Classifyright from '../components/classifyRight/classifyRight'
-
+import Explore from '../pages/Explore/Explore'
+import Loginverify from '../pages/Loginverify/Loginverify'
 
 export default [
     {
@@ -54,15 +55,29 @@ export default [
         }
     },
     {
-        path: '/moduledata',
+        path: '/moduledata/:id',
         component: Moduledata,
         meta:{
             isLogin:true
         }
       },
       {
-        path: '/login',
+        path: '/login', // 登录页面
         component: Login,
+        meta:{
+            isLogin:false
+        },
+      },
+        {
+            path: '/verify',
+            component: Loginverify,
+            meta:{
+                isLogin:false
+            }
+        },
+      {
+        path: '/explore',
+        component: Explore,
         meta:{
             isLogin:false
         }

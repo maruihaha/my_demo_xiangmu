@@ -2,7 +2,7 @@
 <div>
     <!-- 搜索框 -->
     <div class="searchBar">
-        <van-icon name="search" size="20"/>
+        <van-icon name="search" size="20" />
        <input type="text" placeholder="搜索商品，22053款好物">
     </div>
     
@@ -33,9 +33,7 @@ export default {
             sccssc:0
         }
     },
-     mounted(){
-           
-    },
+     
    
   
 }

@@ -6,14 +6,18 @@
             <h1>
                 <img src='//yanxuan-static.nosdn.127.net/hxm/yanxuan-wap/p/20161201/style/img/icon-normal/indexLogo-a90bdaae6b.png?imageView&type=webp' alt="图标">
             </h1>
-            <input type="text" name="" id="" placeholder="搜索商品">
+            <input type="text" name="" id="" placeholder="搜索商品" @click="toExplore('/explore')">
             <van-button plain hairline type="primary" to="/login">登录</van-button>
         </div>
         <div class="navButoom">
             <div class="waimian" >
                 <ul class="limian" >
-                    <li @click="clickOn(index)" :class="{active:!(typeof(deindex) === 'number')}">推荐</li>
-                    <li @click="clickOn(index)" :class="{active:index === deindex}" v-for="(nameto,index) in indexData" :key="index">{{nameto.name}}</li>
+                    <li @click="clickOn(index)" :class="{active:$route.path === '/home'}">推荐</li>
+                        <li :class="{active:$route.params.id*1 === nameto.id}" v-for="(nameto,index) in indexData" :key="index">
+                            <router-link :to="`/moduledata/${nameto.id}`">
+                                {{nameto.name}}
+                            </router-link>
+                        </li>
                 </ul> 
                 <div class="iconarrow" @click="overturn" :class='{iconrotate:isoverturn}'>
                     <van-icon name="arrow-up" size="20"/>
@@ -58,11 +62,16 @@ export default {
          
         let reslut = await this.$API.getCateNavList()
                  this.indexData = reslut
+
+        // let exploreData = await this.$API.getseek()
+        //     console.log(exploreData);
         
             new BScroll('.waimian',{
                 scrollX:true,
                 click:true
             })          
+
+            // this.$router.push('/home')
                 // console.log(this.$store);
     },
      watch:{
@@ -74,28 +83,28 @@ export default {
             })
         })
         },
-         fasdf(){
-          this.deindex = this.fasdf
-      }
+    //      fasdf(){
+    //       this.deindex = this.fasdf
+    //   }
     },
       methods:{
         clickOn(index ){
-            this.deindex = index
-            this.$router.replace('/moduledata')
-            this.$store.commit('qwerty',this.deindex);
-            // console.log(this.deindex);
-            if (this.deindex === undefined) {
+            
                 this.$router.replace('/home')
-            }
+            
         },
         overturn(){
             this.isoverturn = !this.isoverturn
+        },
+        toExplore(path){
+            this.$router.push(path)
+
         }
     },
      computed:{
-        ...mapState({
-            fasdf:state=>state.initData
-        })
+        // ...mapState({
+        //     fasdf:state=>state.initData
+        // })
     },
 
 }
@@ -150,7 +159,7 @@ export default {
                     position relative
                     .limian
                         height 60px
-                        width 1175px
+                        width 1250px
                         display flex 
                         li  
                             width 130px

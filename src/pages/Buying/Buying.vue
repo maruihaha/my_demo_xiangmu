@@ -39,21 +39,21 @@
     </div>
     <!-- 瀑布式商品列表 -->
 
-    <div class="container">
+    <div class="container" >
         <div class="ad">
                 <img src="https://yanxuan.nosdn.127.net/87f3077c32a6946ae644f6a6a8205fc1.png" alt="">
         </div>
-        <div class="box" v-for="(item, index) in listdata" :key="index">
-                <img :src="item.picUrl" alt="">
-                <h2>{{item.title}}</h2>
+        <div class="box"  v-for="(items, index) in listdata" :key="index">
+                <img :src="items.picUrl" alt="">
+                <h2>{{items.title}}</h2>
                 <div class="introduction">
                     <div>
-                        <img :src="item.avatar" alt="">
-                        <span>{{item.nickname}}</span>
+                        <img :src="items.avatar" alt="">
+                        <span>{{items.nickname}}</span>
                     </div>
                     <div>
                         <van-icon name="eye-o" size="20"/>
-                        <span>{{item.readCount}}</span>
+                        <span>{{items.readCount}}</span>
                     </div>
                 </div>
         </div>
@@ -66,8 +66,7 @@
 import Swiper from 'swiper'
 import 'swiper/css/swiper.min.css'
 import BScroll from 'better-scroll'
-import fehelper from '../../components/data/FeHelper-20200221212837.json'
-import waterfall from '../../components/data/waterfall.json'
+
 export default {
     data() {
         return {
@@ -76,9 +75,17 @@ export default {
             dataList:[]
         }
     },
-    mounted(){
-        this.navList = fehelper.data.navList
-        this.listdata = waterfall.data[0].topics
+    async mounted(){
+        let result = await this.$API.getfalls()
+        let respon = await this.$API.getdrawing()
+        console.log(respon);
+        
+        // console.log(result);
+        
+        this.navList = respon.data.navList
+        this.listdata = result.data[0].topics
+        // console.log(this.listdata);
+        
         // this.dataList = waterfall.data[0]
         new BScroll('.waibiaoContent',{
                 scrollX:true,

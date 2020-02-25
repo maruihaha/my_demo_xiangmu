@@ -1,7 +1,7 @@
 <template>
 <div class="loginContent">
     <div class="roofNav">
-        <van-icon name="wap-home-o" size="20"/>
+        <van-icon name="wap-home-o" size="20" @click="toLogin('/home')"/>
         <div>网易严选</div>
         <!-- 搜索 -->
         <van-icon name="search" size="20"/>
@@ -14,11 +14,11 @@
                 <img src="https://yanxuan.nosdn.127.net/39c5e4583753d4c3cb868a64c2c109ea.png" alt="">
             </div>
             <div class="regbtm">
-                <div class="cellphone">
+                <div class="cellphone" @click="toVerify('/verify')">
                     <van-icon name="phone-o" size="20"/>
                     <span>手机号快捷登录</span>
                 </div>
-                <div class="mailbox">
+                <div class="mailbox" @click="youxiang('/verify')">
                     <van-icon name="envelop-o" size="20"/>
                     <span>邮箱账号登陆</span>
                 </div>
@@ -30,6 +30,21 @@
 
 <script type="text/ecmascript-6">
 export default {
+    methods:{
+        toLogin(path){
+            console.log('dianjile');
+            
+            this.$router.push(path)
+        },
+        toVerify(path){
+            this.$router.push(path)
+            this.$store.commit('getcode',true)
+        },
+        youxiang(path){
+            this.$router.push(path)
+            this.$store.commit('getcode',false)
+        }
+    }
 }
 </script>
 

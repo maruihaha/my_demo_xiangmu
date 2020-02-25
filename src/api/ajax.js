@@ -2,7 +2,7 @@ import axios from 'axios'
 import qs from 'qs'
 //生成Axios的伪实例, 能够使用Axios实例的属性，但不是Axios的实例
 const instance = axios.create({
-    baseURL: '/api'   //设置请求的基本路径   
+    // baseURL: '/api'   //设置请求的基本路径   
 })
 
 // 添加请求拦截器

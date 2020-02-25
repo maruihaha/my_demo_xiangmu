@@ -28,7 +28,9 @@ export default {
             let cateNav = await this.$API.getCateNavDatas()
             this.categoryL1List = cateNav.categoryL1List
             // 先给右侧商品列表一个默认值，要不右侧在没有点击左侧时没有内容
-            this.$router.push(`/classify/classifyright/${this.cateNav[0].id}`)
+            this.$router.push(`/classify/classifyright/${this.categoryL1List[0].id}`)
+            // console.log(this.categoryL1List[0].id);
+            
         
         new BScroll('.navigation',{
                 scrollY:true,
